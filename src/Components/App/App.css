@@ -1,4 +1,19 @@
-.App {
+.appContainer {
+  width: 80vw;
+  min-width: 800px;
+  margin: auto;
+  color: #4F200D
+}
+
+
+.cardContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +50,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

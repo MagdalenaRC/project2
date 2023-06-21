@@ -17,15 +17,21 @@ const GettingStarted = () => {
                     against each other with decks they built themselves. 
                     Please view the <Link to = '/rules'>rulebook</Link> on how to play.</p>
             </div>
+
             <div className='gettingStartedSection'>
                 <h2 className='header'>How to navigate our site?</h2>
-                <div>
                 <p className='information'>Welcome to the Magic the gathering tool that will 
                     allow you to view <Link to = '/deckbuilder'>Magic the Gathering cards</Link>, their 
                     properties and build your own decks. We also have a 
                     section for viewing the MTG <Link to = '/rules'>rulebook</Link>. Click 
                     on one of the links at the top headerbar to get started!</p>
-                </div>
+            </div>
+
+            <div className='gettingStartedSection'>
+                <h2 className='header'>Utilizing the Deck Builder</h2>
+                <p className='information'>Your own personal decks can be dreamed up and built with our 
+                    <Link to = '/deckbuilder'> deck building tool </Link>. Navigate to the deck builder and 
+                    use the search tool and the add buttons to begin.</p>
             </div>
         </div>
         

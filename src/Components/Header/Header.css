@@ -2,22 +2,62 @@
     display: flex;
     flex-direction: row;
     gap: 30px;;
+
 }
 
-img {
+.links:link {
+    color: red;
+}
+
+.links:visited {
+    color: white;
+}
+
+.links:active  {
+    color: white
+}
+
+.links:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+header img {
     max-height: 200px;
 }
 
 input[type=text] {
     border: 3px solid #ccc;
+    padding: 12px 20px;
+    
 }
 
 input[type=text]:focus {
     border: 3px solid #555;
 }
 
+input[type='submit'] {
+    background-color: lightcyan;
+}
+
 header {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: space-evenly;
+    position: relative;
+}
+
+header .headerBackground {
+    position: absolute;
+    background-image: url('https://assetsio.reedpopcdn.com/mtg-modern-horizons-2-cards.png?width=1920&height=1920&fit=bounds&quality=80&format=jpg');
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+
+.submitBtn{
+    border: 3px solid #ccc;
+    padding: 12px 20px;
 }

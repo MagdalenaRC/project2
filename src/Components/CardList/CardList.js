@@ -4,7 +4,8 @@ import './CardList.css';
 
 const Card = (props) => {
     const cardInfo = props.card;
-    console.log('card info', cardInfo);
+    const isSearch = props.isSearch;
+    
     let imgSrc;
 
     if (cardInfo['image_uris']) {
@@ -13,12 +14,17 @@ const Card = (props) => {
         imgSrc = cardInfo['card_faces'][0]['image_uris']?.normal;
     }
 
+    let cardLinksText;
+    if (isSearch) {
+        cardLinksText = <a href="#">Add to Deck</a> &124; <a href="#">View Details</a>;
+    }
+
     return (
         <div key={cardInfo?.id} className='cardInfo'>
             <img src={ imgSrc } alt={cardInfo.name} />
             <div className='cardDetails'>
-                <p>{cardInfo.name}</p>
-                <p>Add to Deck</p>
+                <p className='cardTitle'>{cardInfo.name}</p>
+                {isSearch ? <p className='cardLinks'><a href="#">Add to Deck</a> | <a href="#">View Details</a></p> : <p className='cardLinks'><a href="#">View Details</a></p>}
             </div>
         </div>
     )
@@ -26,11 +32,10 @@ const Card = (props) => {
 
 const CardList = (props) => {
     const cards = props.cards;
-    const [deck, setDeck] = useState([])
-
+    
     return (
         <div className='cardList'>
-            {cards !== undefined ? cards.map((card, index) => <Card key={index} card={card}></Card>) : `No cards to show.`}
+            {cards !== undefined || cards.length !== 0 ? cards.map((card, index) => <Card key={index} card={card} isSearch={props.isSearch}></Card>) : `No cards to show.`}
         </div>
     )
 }

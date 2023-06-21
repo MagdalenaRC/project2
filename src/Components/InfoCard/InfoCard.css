@@ -1,0 +1,56 @@
+.cardInfo {
+  position: relative;
+  margin: 0.5rem;
+}
+
+.cardInfo img {
+  width: 260px;
+}
+
+.cardInfo .cardDetails {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  transition: background-color 500ms, opacity 200ms ease-out;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.cardInfo:hover .cardDetails {
+  opacity: 100;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.cardDetails p {
+  padding: 0.5rem;
+}
+
+.cardInfo .cardDetails .cardTitle {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.cardInfo .cardDetails .cardLinks {
+  padding: 0.5rem 0.5rem 0.7rem;
+}
+
+.cardInfo .cardDetails .cardLinks button {
+  padding: .1rem;
+  text-decoration: underline;
+  color: #0066cc;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.3rem 0.7rem;
+}
+
+.cardInfo .cardDetails .cardLinks button:hover {
+  border-color: black;
+  background-color: #0066cc;
+  color: white;
+}

@@ -21,10 +21,11 @@ const Header = () => {
     }
 
   return <header>
+            <div className='headerBackground'></div>
             <img src='https://1000logos.net/wp-content/uploads/2022/10/Magic-The-Gathering-logo.png' alt='Magic Logo' />
             <form onSubmit={submitSearch}>
                 <input type='text' value={searchTerm} onChange={e => setSearchTerm(e.target.value)}/>
-                <input type='submit'/>
+                <input className='submitBtn' type='submit'/>
             </form>
             <nav>
                 <div className='links'>

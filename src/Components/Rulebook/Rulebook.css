@@ -1,7 +1,12 @@
 .rules{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: antiquewhite;
-    padding: 1%
+    padding: 1%;
+    
+}
+
+.rules h1,.rules h3,.rules div{
+    margin-bottom: 2%;
+    margin-top: 1%;
 }
 
 .exampleContainer{
@@ -11,8 +16,8 @@
 
 #exampleCard{
     grid-column: 1;
-    padding: 20%;
-    scale: 200%;
+    padding: 1%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -20,4 +25,34 @@
 #exampleDetails{
     grid-column: 2;
     padding: 0;
+    
+}
+
+.category{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.answer{
+    display: inline-block;
+    padding-left: 3%;
+    font-weight: lighter;
+    text-decoration: none;
+}
+
+#newCard{
+    margin-left: auto;
+    margin-right: 40%;
+    margin-top: 5%;
+    float: right;
+    scale: 120%;
+    background-color: #FFD93D;
+    border-radius: 15%;
+    border: 1px solid #FF8400;
+    padding: 10px;
+    font-weight: bold;
+}
+
+#newCard:hover{
+    scale:125%
 }

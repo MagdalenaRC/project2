@@ -8,16 +8,28 @@ const Rulebook = () => {
 
     const test = () => {
         setRandom(random+1)
-        console.log(random)
-        return
+        // '#exampleDetails'.toggle()
+        let elements = document.getElementsByClassName('answer')
+        Array.prototype.map.call(elements, (element)=>{
+            element.innerHTML='Hover for Answer'
+        })
+
     }
+
+    const hover = (id) => {
+        if (random>=1){
+            let text = '';
+            typeof example[id] !== 'undefined' ? text = example[id] : text = 'Not applicable' 
+            document.getElementById(id).innerHTML= text
+        }
+    }
+    
 
     useEffect(()=>{
         fetch('https://api.scryfall.com/cards/random')
             .then(res=>res.json())
             .then(data => setExample(data))
     },[random])
-
 
 
     return (
@@ -42,7 +54,7 @@ const Rulebook = () => {
             </div>
 
             <div id='types'>
-                There are 8 types of cards in MTG:
+                There are 8 types of cards in MTG: <br/><br/>
                 <ul>
                     <li>Creatures - primary means to attack, defend, and activate abilities during a turn</li>
                     <li>Artifacts - represent special objects, devices, equipment, etc. to add special abilities</li>
@@ -59,18 +71,59 @@ const Rulebook = () => {
 
             <div className='exampleContainer'>
 
-                <img id='exampleCard' src={example.image_uris.large}/>
+                <img id='exampleCard' src={example.image_uris.large} alt='No image available'/>
                 
                 <div id='exampleDetails'>
                     <ul>
-                        <p>Card Name: {example.name}</p>
-                        <p>Mana Cost: {example.mana_cost}</p>
-                        <p>Type: {example.type_line}</p>
-                        <p>Set Symbol: {example.rarity}</p>
-                        <p>Rules Text: {example.oracle_text}</p>
-                        <p>Flavor Text: {example.flavor_text}</p>
-                        <p>Power/Toughness: {example.power}/{example.toughness}</p>
-                        <button onClick={test}>Try it yourself</button>
+                        <div className = 'category' onMouseOver={()=>hover('name')}>
+                            Card Name: 
+                            <div className='answer' id='name'>
+                                {random<1 ? example.name: 'Hover for Answer'}
+                            </div> 
+                        </div>
+                        <div className = 'category' onMouseOver={()=>hover('mana_cost')}>
+                            Mana Cost: 
+                            <div className='answer' id='mana_cost'>
+                                {random<1 ? example.mana_cost: 'Hover for Answer'}
+                            </div> 
+                        </div>
+                        <div className = 'category' onMouseOver={()=>hover('type_line')}>
+                            Type: 
+                            <div className='answer' id='type_line'>
+                                {random<1 ? example.type_line: 'Hover for Answer'}
+                            </div> 
+                        </div>
+                        <div className = 'category' onMouseOver={()=>hover('rarity')}>
+                            Set Symbol: 
+                            <div className='answer' id='rarity'>
+                                {random<1 ? example.rarity: 'Hover for Answer'}
+                            </div> 
+                        </div>
+                        <div className = 'category' onMouseOver={()=>hover('oracle_text')}>
+                            Rules Text: 
+                            <div className='answer' id='oracle_text'>
+                                {random<1 ? example.oracle_text: 'Hover for Answer'}
+                            </div> 
+                        </div>
+                        <div className = 'category' onMouseOver={()=>hover('flavor_text')}>
+                            Flavor Text: 
+                            <div className='answer' id='flavor_text'>
+                                {random<1 ? example.flavor_text: 'Hover for Answer'}
+                            </div> 
+                        </div>
+                        <div className = 'category' onMouseOver={()=>hover('power')}>
+                            Power: 
+                            <div className='answer' id='power'>
+                                {random<1 ? example.power: 'Hover for Answer'}
+                            </div> 
+                        </div>
+                        <div className = 'category' onMouseOver={()=>hover('toughness')}>
+                            Toughness: 
+                            <div className='answer' id='toughness'>
+                                {random<1 ? example.toughness: 'Hover for Answer'}
+                            </div> 
+                        </div>
+                        <button id='newCard' onClick={test}>Try it yourself</button>
                     </ul>
                 </div>
             </div>

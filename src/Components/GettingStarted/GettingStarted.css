@@ -1,15 +1,17 @@
 .gettingStartedWrapper {
     background-color: burlywood;
+    background-size: contain;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    background-image: url(https://sm.ign.com/ign_ap/screenshot/default/39307-magic-the-gathering_3u3m.jpg);
 }
 
 .gettingStartedSection {
     padding: 40px;
     margin: 20px;
-    background-color: aqua;
+    background-color: #F6F1E9;
     width: 400px;
     height: 300px;
     border: 10px;
