@@ -1,0 +1,23 @@
+.links {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;;
+}
+
+img {
+    max-height: 200px;
+}
+
+input[type=text] {
+    border: 3px solid #ccc;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

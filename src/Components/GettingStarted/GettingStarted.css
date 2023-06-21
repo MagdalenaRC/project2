@@ -1,0 +1,30 @@
+.gettingStartedWrapper {
+    background-color: burlywood;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.gettingStartedSection {
+    padding: 40px;
+    margin: 20px;
+    background-color: aqua;
+    width: 400px;
+    height: 300px;
+    border: 10px;
+    border-radius: 10px;
+    text-align: center;
+    border-color: blueviolet;
+    box-shadow: 10px 5px 5px black;
+}
+.gettingStartedSection:hover {
+    scale: 1.1;
+}
+
+.header {
+    font-family: fantasy;
+}
+.information {
+    font-family: cursive;
+}

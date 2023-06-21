@@ -1,0 +1,23 @@
+.rules{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: antiquewhite;
+    padding: 1%
+}
+
+.exampleContainer{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#exampleCard{
+    grid-column: 1;
+    padding: 20%;
+    scale: 200%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#exampleDetails{
+    grid-column: 2;
+    padding: 0;
+}
