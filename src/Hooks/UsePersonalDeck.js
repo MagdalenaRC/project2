@@ -25,7 +25,11 @@ const usePersonalDeck = (showSuccess) => {
   };
 
   const removeCard = (card) => {
-    setDeck(deck.filter((existingCard) => existingCard !== card));
+    let indexToRemove = deck.find((existingCard) => existingCard === card)
+    let temp = [...deck];
+    temp.splice(indexToRemove, 1)
+    setDeck(temp)
+    // setDeck(deck.filter((existingCard) => existingCard !== card));
     showSuccess("Card removed from deck");
   };
 

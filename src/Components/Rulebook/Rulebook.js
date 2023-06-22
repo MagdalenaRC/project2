@@ -34,6 +34,15 @@ const Rulebook = () => {
             .then(data => setExample(data))
     },[random])
 
+    let imgSrc;
+
+    if (example['image_uris']) {
+        imgSrc = example['image_uris']?.normal;
+    } else if (example['card_faces'] !== undefined) {
+        imgSrc = example['card_faces'][0]['image_uris']?.normal;
+    }
+    
+
 
     return (
         <article className='rules'>
@@ -74,10 +83,10 @@ const Rulebook = () => {
 
             <div className='exampleContainer'>
 
-                <img id='exampleCard' src={example.image_uris.large} alt='No image available'/>
+                <img id='exampleCard' src={imgSrc} alt='No image available'/>
                 
                 <div id='exampleDetails'>
-                    <ul>
+                    <dl>
                         <div className = 'category' onMouseOver={()=>hover('name')}>
                             Card Name: 
                             <div className='answer' id='name'>
@@ -127,7 +136,7 @@ const Rulebook = () => {
                             </div> 
                         </div>
                         
-                    </ul>
+                    </dl>
                 </div>
             </div>
 

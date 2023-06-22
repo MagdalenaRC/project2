@@ -21,7 +21,7 @@ body {
 }
 
 .magic-card-img{
-    width: 40%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
@@ -38,9 +38,11 @@ body {
 
 .purchaseLink{
     margin-top: 2%;
-    margin-left: 30%;
     width: 40%;
     background-color: #FFD93D;
+    color: #4F200D;
+    font-size: large;
+    font-weight: bold;
 }
 
 .purchaseLink:hover{
@@ -50,11 +52,25 @@ body {
 #link{
     color: #4F200D;
     font-size: large;
+    font-weight: bold;
     text-decoration: none;
 }
 
 #details {
     background-color: #F6F1E9;
     border: 2px solid #4F200D;
+}
+
+#title {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-left: 5%;
+    width: 90%;
+    text-align: center;
+}
+
+#buttons{
+    display: flex;
+    justify-content: space-evenly;
 }
 

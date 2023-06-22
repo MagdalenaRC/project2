@@ -35,6 +35,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}  errorElement={<ErrorPage/>}>
       <Route path='/' element={<GettingStarted />} />
       <Route path='/rules' element={<Rulebook />} />
+      <Route path='search' element={<SearchResult />} />
       <Route path='search/:query' element={<SearchResult />} />
       <Route path= '/gettingStarted' element={<GettingStarted />} />
       <Route path= '/deckBuilder' element={<DeckBuilder />} />

@@ -6,6 +6,17 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import './DeckBuilder.css';
 
+const InfoCardBuilder = ({ card, handleClick, btnText }) => {
+  const navigate = useNavigate();
+
+  return (
+    <InfoCard card={card} key={card.id}>
+      <button onClick={() => { handleClick(card) }}>{btnText}</button> | 
+      <button onClick={() => { navigate(`/details/${card.id}`, { state: card }) } }>View Details</button>
+    </InfoCard>
+  )
+}
+
 const DeckBuilder = () => {
   const [ randomCard, setRandomCard ] = useState({});
   const { deck, removeCard, addCard } = useContext(personalDeckContext);
@@ -33,7 +44,7 @@ const DeckBuilder = () => {
     return () => { ignore = true; setIsLoading(false); }
   }, []);
 
-  const handleRemove = (event, card) => {
+  const handleRemove = (card) => {
     removeCard(card);
     // assume with 1 card left that there will be no cards left in the deck
     if (deck.length < 2) {
@@ -46,11 +57,11 @@ const DeckBuilder = () => {
       <h1>Deck Builder</h1>
       {deck.length > 0 && <p>{deck.length} cards in deck</p>}
       <div className='cardContainer'>
-        {deck && deck.map((card, index) => <InfoCard card={card} key={card.id}><button onClick={(e) => handleRemove(e, card)}>Remove</button> | <button onClick={(()=>navigate(`/details/${card.id}`, {state: card} ))}>View Details</button></InfoCard>)}
+        {deck && deck.map( (card, index) => <InfoCardBuilder card={card} handleClick={handleRemove} btnText={'Remove'}></InfoCardBuilder> )}
         {deck.length === 0 && <>
-          <div className='noCards'>No cards in deck. Do a search above to add cards. Or use this random card </div> 
-          {randomCard && !isLoading && <InfoCard card={randomCard}><button onClick={() => { addCard(randomCard); }}>Add to Deck</button> | <button onClick={(()=>navigate(`/details/${randomCard.id}`, {state: randomCard} ))}>View Details</button></InfoCard>}
+          <div className='noCards'>No cards in deck. Do a search above to add cards. Or use this random card:</div> 
           {isLoading && <p>Loading...</p>}
+          {randomCard && !isLoading && <InfoCardBuilder card={randomCard} handleClick={addCard} btnText={'Add to Deck'}></InfoCardBuilder>}
         </>}
       </div>
     </>

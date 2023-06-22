@@ -1,22 +1,21 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate, useParams } from 'react-router-dom';
+import { personalDeckContext } from '../App/App';
 import './Header.css'
-
-
 
 const Header = () => {
     const [ searchTerm, setSearchTerm ] = useState('');
     const navigate = useNavigate();
     const {query} = useParams();
-    const [optionList, setOptionList ] = useState([<option value='Loading...'></option>]);
+    const [optionList, setOptionList ] = useState([]);
+    const { deck } = useContext(personalDeckContext);
 
     useEffect(()=>{
         if (query) {
             setSearchTerm(query);
         }
     }, [query]);
-
     useEffect(() => {
         let autoCompletes;
         const getAutoComplete = async () => {
@@ -32,9 +31,9 @@ const Header = () => {
                 
                 if(autoCompletes.length > 0) {
                     let newOptions = [];
-                    for (let value of autoCompletes) {
-                        newOptions.push(<option value={value}></option>);
-                    }
+                    autoCompletes.forEach((element, index) => {
+                        newOptions.push(<option key={index} value={element}></option>);
+                    });
                     setOptionList([...newOptions]);
                 }
             } else {
@@ -57,7 +56,7 @@ const Header = () => {
                 <ul className='links'>
                     <li><Link className='Link' to = '/gettingStarted'>Getting Started</Link></li>
                     <li><Link className='Link' to = '/rules'>Rulebook</Link></li>
-                    <li><Link className='Link' to = '/deckbuilder'>Deck Builder</Link></li>
+                    <li><Link className='Link' to='/deckbuilder'>Deck Builder <span class="badge rounded-pill text-bg-secondary">{deck.length}</span></Link></li>
                 </ul>
             </nav>
             <header>
