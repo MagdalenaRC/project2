@@ -1,8 +1,37 @@
-.links {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;;
+.navBar {
+    position: sticky !important;
+    top: 0;
+    margin: -1%;
+    z-index: 1;
+}
 
+.links {
+    list-style-type: none;
+    padding: 5px;
+    overflow: hidden;
+    background-color: #FFD93D;
+    border: 3px inset #4F200D;
+
+}
+
+.Link {
+    float: left;
+    margin-left: 1%;
+    display: block;
+    color:  #4F200D;
+    text-align: center;
+    padding: 5px 16px;
+    text-decoration: none;
+    font-size: medium;
+    text-align: center;
+    font-weight: bolder;    
+}
+
+/* Change the link color to white on hover */
+.Link:hover {
+    background-color: #FF8400;
+    color:  #F6F1E9;
+    border-radius: 5%;
 }
 
 .links:link {
@@ -17,31 +46,34 @@
     color: white
 }
 
-.links:hover {
+/* .links:hover {
     transform: scale(1.1);
     cursor: pointer;
-}
+} */
 
 header img {
     max-height: 200px;
 }
 
-input[type=text] {
-    border: 3px solid #ccc;
+input[type=search] {
+    border: 3px solid #4F200D;
     padding: 12px 20px;
+    min-width: 80%;
     
 }
 
-input[type=text]:focus {
-    border: 3px solid #555;
+input[type=search]:focus-within{
+    font-weight: bold;
+    color: #4F200D
 }
 
 input[type='submit'] {
-    background-color: lightcyan;
+    background-color: #FFD93D;
+    color: #4F200D;
 }
 
 header {
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: space-evenly;
     position: relative;
@@ -57,7 +89,28 @@ header .headerBackground {
 }
 
 
-.submitBtn{
-    border: 3px solid #ccc;
+.submitBtn {
+    transition: all 0.2s linear 0s;
+    translate: 0px -1px;
+    border: 3px solid #4F200D;
     padding: 12px 20px;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    
+     &:hover {
+      text-indent: 10px;
+      padding-right: 30px;
+      border: 3px solid #FF8400;
+
+      
+      &:before {
+        transform: scale(1,1);
+        text-indent: 0;
+      }
+    }
+  }
+
+.searchForm{
+    min-width: 60%;
+    margin-right: 2%;
 }

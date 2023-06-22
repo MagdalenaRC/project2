@@ -1,7 +1,7 @@
 .appContainer {
   width: 80vw;
   min-width: 800px;
-  margin: auto;
+  margin: 1rem auto;
   color: #4F200D
 }
 

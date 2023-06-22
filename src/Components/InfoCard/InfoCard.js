@@ -11,9 +11,9 @@ const InfoCard = ({ card, children }) => {
 
   return (
     <div key={card?.id} className='cardInfo'>
-      <img src={imgSrc} alt={card.name} />
+      <img src={imgSrc} alt={card?.name} />
       <div className='cardDetails'>
-        <p className='cardTitle'>{card.name}</p>
+        <p className='cardTitle'>{card?.name}</p>
         <p className='cardLinks'>{children}</p>
       </div>
     </div>

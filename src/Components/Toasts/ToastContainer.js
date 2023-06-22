@@ -1,7 +1,4 @@
-import { useContext, useEffect } from 'react';
-// import { useToastContext } from '../Contexts/ToastContext';
-// import './ToastContainer.css'
-import { ToastContext } from '../App/App';
+import { useEffect } from 'react';
 
 function Toast({ index, classType, toast, onDelete }) {
   return (
@@ -27,16 +24,14 @@ function Toast({ index, classType, toast, onDelete }) {
   );
 }
 
-export default function ToastContainer() {
+export default function ToastContainer({ toasts, deleteToast }) {
   let autoDelete = true;
-  let autoDeleteTime = 1000;
-
-  const { toastList, deleteToast } = useContext(ToastContext);
+  let autoDeleteTime = 3000;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (autoDelete && toastList.length) {
-        deleteToast(toastList[0].id);
+      if (autoDelete && toasts.length) {
+        deleteToast(toasts[0].id);
       }
     }, autoDeleteTime);
 
@@ -45,7 +40,7 @@ export default function ToastContainer() {
     };
 
     // eslint-disable-next-line
-  }, [toastList]);
+  }, [toasts]);
 
   return (
     <div
@@ -54,10 +49,10 @@ export default function ToastContainer() {
       className='position-relative'
     >
       <div
-        className='toast-container top-0 start-50 translate-middle-x p-3'
+        className='toast-container position-fixed top-0 start-50 translate-middle-x p-3 mt-4'
         id='toastPlacement'
       >
-        {toastList.map((toast, index) => {
+        {toasts.map((toast, index) => {
           const classType =
             toast.type === 'success'
               ? 'text-bg-success'

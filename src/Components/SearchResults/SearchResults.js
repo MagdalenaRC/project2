@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { personalDeckContext } from '../App/App';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import InfoCard from '../InfoCard/InfoCard';
 
@@ -10,7 +11,7 @@ const SearchResult = () => {
   const { query } = useParams();
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const navigate = useNavigate();
   const { addCard } = useContext(personalDeckContext);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const SearchResult = () => {
       <h2 className='searchTitle'>Results for "{decodeURIComponent(query)}"</h2>
       <div className='cardContainer'>
         {isLoading && <h2>Loading...</h2>}
-        {results !== undefined && !isLoading && results.map((result, index) => <InfoCard card={result} key={result.id}><button onClick={ () => { addCard(result); } }>Add to Deck</button> | <button>View Details</button></InfoCard>)}
+        {results !== undefined && !isLoading && results.map((result, index) => <InfoCard card={result} key={result.id}><button onClick={ () => { addCard(result); } }>Add to Deck</button> | <button onClick={(()=>navigate(`/details/:${result.id}`, {state: result} ))}>View Details</button></InfoCard>)}
         {results === undefined && !isLoading && `No results found.`}
       </div>
     </>

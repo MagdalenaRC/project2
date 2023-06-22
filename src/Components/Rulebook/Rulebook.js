@@ -1,6 +1,9 @@
 import React from 'react'
 import './Rulebook.css'
 import { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHatWizard } from '@fortawesome/free-solid-svg-icons';
+
 const Rulebook = () => {
 
     const [example, setExample] = useState({image_uris : {large : ''}})
@@ -123,10 +126,15 @@ const Rulebook = () => {
                                 {random<1 ? example.toughness: 'Hover for Answer'}
                             </div> 
                         </div>
-                        <button id='newCard' onClick={test}>Try it yourself</button>
+                        
                     </ul>
                 </div>
             </div>
+
+            <button id='newCard' onClick={test}>
+                Give it A Try
+                <FontAwesomeIcon id='icon' icon={faHatWizard} />
+            </button>
 
         </article>
     )

@@ -25,10 +25,11 @@
 }
 
 .cardDetails p {
-  padding: 0.5rem;
+  margin: 0 !important;
 }
 
 .cardInfo .cardDetails .cardTitle {
+  padding: 1rem 0 0;
   font-weight: 600;
   font-size: 1.2rem;
 }
