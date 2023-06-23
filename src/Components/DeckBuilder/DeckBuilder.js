@@ -1,27 +1,21 @@
 import React from 'react';
-import InfoCard from '../InfoCard/InfoCard';
-import { personalDeckContext } from '../App/App';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Button from 'react-bootstrap/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { personalDeckContext } from '../App';
+import { usePersonalDeckContext } from '../../Hooks';
+
+import InfoCard from '../InfoCard';
+import CardList from '../CardList';
 
 import './DeckBuilder.css';
 
-const InfoCardBuilder = ({ card, handleClick, btnText }) => {
-  const navigate = useNavigate();
-
-  return (
-    <InfoCard card={card} key={card.id}>
-      <button onClick={() => { handleClick(card) }}>{btnText}</button> | 
-      <button onClick={() => { navigate(`/details/${card.id}`, { state: card }) } }>View Details</button>
-    </InfoCard>
-  )
-}
-
 const DeckBuilder = () => {
   const [ randomCard, setRandomCard ] = useState({});
-  const { deck, removeCard, addCard } = useContext(personalDeckContext);
+  const { deck, removeCard, addCard, emptyDeck } = usePersonalDeckContext();
   const [ isLoading, setIsLoading ] = useState(false);
-  const navigate = useNavigate();
 
   const getRandomCard = async (ignore) => {
     setIsLoading(true);
@@ -52,18 +46,28 @@ const DeckBuilder = () => {
     }
   };
 
+  const handleEmpty = () => {
+    emptyDeck()
+    getRandomCard(false);
+  }
+
   return (
     <>
       <h1>Deck Builder</h1>
-      {deck.length > 0 && <p>{deck.length} cards in deck</p>}
+      {deck.length > 0 && <p>{deck.length} card{deck.length > 1 && 's'} in deck</p>}
+      {deck.length > 0 && <Button id='empty' onClick={handleEmpty}>
+        Empty Deck
+        <FontAwesomeIcon id='trashcan' icon={faTrashCan} />
+      </Button>}
       <div className='cardContainer'>
-        {deck && deck.map( (card, index) => <InfoCardBuilder card={card} handleClick={handleRemove} btnText={'Remove'}></InfoCardBuilder> )}
+        {deck && <CardList deck={deck} allowRemove={true} handleRemove={handleRemove}></CardList>}
         {deck.length === 0 && <>
           <div className='noCards'>No cards in deck. Do a search above to add cards. Or use this random card:</div> 
           {isLoading && <p>Loading...</p>}
-          {randomCard && !isLoading && <InfoCardBuilder card={randomCard} handleClick={addCard} btnText={'Add to Deck'}></InfoCardBuilder>}
+          {randomCard && !isLoading && <InfoCard card={randomCard}></InfoCard>}
         </>}
       </div>
+      
     </>
   )
 }

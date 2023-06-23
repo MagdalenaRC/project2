@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
+
+export const PersonalDeckContext = createContext({ deck: [], addCard: () => { }, removeCard: () => { }, emptyDeck: () => { } });
 
 const usePersonalDeck = (showSuccess) => {
+  const id = useRef(0);
+
   const getFromStorage = () => {
     if (localStorage.personalDeck) {
       return JSON.parse(localStorage.personalDeck);
@@ -20,12 +24,15 @@ const usePersonalDeck = (showSuccess) => {
   }, [deck]);
 
   const addCard = (card) => {
-    setDeck([...deck, card]);
+    let copy = Object.create(card);
+    copy.uuid = `${id.current++}-${copy.id}`;
+    setDeck([...deck, copy]);
     showSuccess("Card added to deck");
   };
 
-  const removeCard = (card) => {
-    let indexToRemove = deck.find((existingCard) => existingCard === card)
+  const removeCard = (card, index) => {
+    console.log(index, card);
+    let indexToRemove = deck.findIndex((existingCard) => existingCard.uuid === card.uuid)
     let temp = [...deck];
     temp.splice(indexToRemove, 1)
     setDeck(temp)
@@ -33,7 +40,15 @@ const usePersonalDeck = (showSuccess) => {
     showSuccess("Card removed from deck");
   };
 
-  return { deck, addCard, removeCard };
+  const emptyDeck = () => {
+    setDeck([])
+    showSuccess("Deck has been emptied");
+  }
+
+
+  return { deck, addCard, removeCard, emptyDeck };
 };
+
+export const usePersonalDeckContext = () => { return useContext(PersonalDeckContext) }
 
 export default usePersonalDeck;

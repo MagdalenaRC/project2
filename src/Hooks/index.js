@@ -1,3 +1,3 @@
-import usePersonalDeck from './UsePersonalDeck';
+import usePersonalDeck, { usePersonalDeckContext, PersonalDeckContext } from './UsePersonalDeck';
 
-export { usePersonalDeck };
+export { usePersonalDeck, usePersonalDeckContext, PersonalDeckContext };

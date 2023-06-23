@@ -26,7 +26,7 @@ function Toast({ index, classType, toast, onDelete }) {
 
 export default function ToastContainer({ toasts, deleteToast }) {
   let autoDelete = true;
-  let autoDeleteTime = 3000;
+  let autoDeleteTime = 2000;
 
   useEffect(() => {
     const interval = setInterval(() => {

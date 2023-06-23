@@ -1,7 +1,9 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate, useParams } from 'react-router-dom';
-import { personalDeckContext } from '../App/App';
+import { personalDeckContext } from '../App';
+import { usePersonalDeckContext } from '../../Hooks';
+
 import './Header.css'
 
 const Header = () => {
@@ -9,7 +11,8 @@ const Header = () => {
     const navigate = useNavigate();
     const {query} = useParams();
     const [optionList, setOptionList ] = useState([]);
-    const { deck } = useContext(personalDeckContext);
+    const { deck } = usePersonalDeckContext();
+    const searchInput = useRef();
 
     useEffect(()=>{
         if (query) {
@@ -25,19 +28,19 @@ const Header = () => {
         }
 
         const handler = setTimeout(async () => {
-            if (searchTerm) {
-                console.log('do search now');
+            const searchIsActive = document.activeElement === searchInput.current
+            // Only fetch autocomplete suggestions if the search is not empty and the textbox is currently active
+            if (searchTerm && searchIsActive) {
                 await getAutoComplete();
                 
                 if(autoCompletes.length > 0) {
                     let newOptions = [];
+                    // add autocomplete suggestions to the datalist options
                     autoCompletes.forEach((element, index) => {
                         newOptions.push(<option key={index} value={element}></option>);
                     });
                     setOptionList([...newOptions]);
                 }
-            } else {
-                console.log('search is blank');
             }
         }, 1000);
 
@@ -56,14 +59,14 @@ const Header = () => {
                 <ul className='links'>
                     <li><Link className='Link' to = '/gettingStarted'>Getting Started</Link></li>
                     <li><Link className='Link' to = '/rules'>Rulebook</Link></li>
-                    <li><Link className='Link' to='/deckbuilder'>Deck Builder <span class="badge rounded-pill text-bg-secondary">{deck.length}</span></Link></li>
+                    <li><Link className='Link' to='/deckbuilder'>Deck Builder <span id='counter' className="badge rounded-pill text-bg-secondary">{deck.length}</span></Link></li>
                 </ul>
             </nav>
             <header>
                 <div className='headerBackground'></div>
                 <img src='https://1000logos.net/wp-content/uploads/2022/10/Magic-The-Gathering-logo.png' alt='Magic Logo' />
                 <form className='searchForm' onSubmit={submitSearch}>
-                    <input type='search' list='searchSuggestions' placeholder='Search by card name' value={searchTerm} onChange={e => setSearchTerm(e.target.value)}/>
+                    <input ref={searchInput} type='search' list='searchSuggestions' placeholder='Search by card name' value={searchTerm} onChange={e => setSearchTerm(e.target.value)}/>
                   <datalist id="searchSuggestions">
                       {optionList}
                     </datalist>

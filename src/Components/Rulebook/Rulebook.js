@@ -1,8 +1,9 @@
 import React from 'react'
-import './Rulebook.css'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHatWizard } from '@fortawesome/free-solid-svg-icons';
+
+import './Rulebook.css'
 
 const Rulebook = () => {
 

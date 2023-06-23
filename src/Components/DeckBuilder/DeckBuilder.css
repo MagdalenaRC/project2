@@ -2,3 +2,21 @@
   width: 100%;
   text-align: center;
 }
+
+#empty {
+  background-color: #FFD93D;
+  color: #4F200D;
+  font-size: large;
+  font-weight: bold;
+  min-width: 20%;
+  margin-left: 85%;
+  margin-top: -14%;
+}
+
+#empty:hover{
+  background-color: #FF8400;
+}
+
+#trashcan {
+  margin-left: 10%;
+}
